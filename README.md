@@ -10,15 +10,16 @@
 
 ### El proyecto se dividira en 13 puntos
 - [x] *1. Creacion del proyecto*
-- [ ] *2. Crear y dar formato a la ventana*
-     - [ ] *1. Barra de menu*
+- [x] *2. Crear y dar formato a la ventana*
+     - [x] *1. Barra de menu*
        - [ ] *Cargar un documento*
        - [ ] *Guardar un documento*
        - [ ] *Guardar un nuevo documento*
        - [ ] *Nuevo documento*
-     - [ ] *2. RichTextBox*
-- [ ] *3. Tokens*
-- [ ] *4. .json de palabras reservadas*
+     - [x] *2. RichTextBox*
+- [x] *3. Tokens*
+- [x] ~*4. .json de palabras reservadas*~
+- [x] *4. funcion buscadora de palabras reservadas*
 - [ ] *4. Analizador Lexico*
 - [ ] *5. Remarcado de tokens*
 - [ ] *6. Tabla de simbolos*
