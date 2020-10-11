@@ -74,9 +74,8 @@ namespace M {
                                 qState = Token.States.q17;
                             } else if (character.CompareTo(':') == 0) {
                                 //estado 18 dos puntos :
-                                state = -1;
+                                state = 18;
                                 lexeme += character;
-                                qState = Token.States.q18;
                             } else if (character.CompareTo(';') == 0) {
                                 //estado 20 pyc
                                 state = -1;
@@ -128,9 +127,212 @@ namespace M {
                                 lexeme += character;
                                 character = entry[++count];
                                 column++;
+                            } else if (character.CompareTo('.') == 0) {
+                                state = 30;
+                                lexeme += character;
+                                character = entry[++count];
+                                column++;
                             } else {
                                 state = -1;
                                 qState = isReservedWord(lexeme);
+                            }
+                            break;
+                        case 2:
+                             if (char.IsDigit(character)) {
+                                //se mantiene en el mismo estado
+                                lexeme += character;
+                                character = entry[++count];
+                                column++;
+                            } else if (character.CompareTo('.') == 0) {
+                                //nos mevomos al estado 3
+                                state = 3;
+                                lexeme += character;
+                                character = entry[++count];
+                                column++;
+                            } else if (char.IsLetter(character) || character.CompareTo('_') == 0 || character.CompareTo('"') == 0) {
+                                //token de error
+                                //estado error continuo
+                                state = 30;
+                                lexeme += character;
+                                character = entry[++count];
+                                column++;
+                                qState = Token.States.qErr;
+                            } else {
+                                state = -1;
+                                qState = Token.States.q2;
+                            }
+                            break;
+                        case 3:
+                            if (char.IsDigit(character)) {
+                                //se cambia al estado 4
+                                state = 4;
+                                lexeme += character;
+                                character = entry[++count];
+                                column++;
+                            } else if (char.IsLetter(character) || character.CompareTo('_') == 0 || character.CompareTo('"') == 0 || isSpace(character)) {
+                                //token de error
+                                //estado error continuo
+                                state = 30;
+                                lexeme += character;
+                                character = entry[++count];
+                                column++;
+                                qState = Token.States.qErr;
+                            } else if (character.CompareTo('$') == 0) {
+                                //fin del archivo
+                                state = -1;
+                                qState = Token.States.qErr;
+                            } else if (character.CompareTo('.') == 0) {
+                                state = 30;
+                                lexeme += character;
+                                character = entry[++count];
+                                column++;
+                            } else {
+                                state = -1;
+                                qState = Token.States.q2;
+                            }
+                            break;
+                        case 4:
+                            if (char.IsDigit(character)) {
+                                //se mantiene en el mismo estado
+                                lexeme += character;
+                                character = entry[++count];
+                                column++;
+                            } else if (char.IsLetter(character) || character.CompareTo('_') == 0 || character.CompareTo('"') == 0) {
+                                //token de error
+                                //estado error continuo
+                                state = 30;
+                                lexeme += character;
+                                character = entry[++count];
+                                column++;
+                                qState = Token.States.qErr;
+                            } else if (character.CompareTo('.') == 0) {
+                                state = 30;
+                                lexeme += character;
+                                character = entry[++count];
+                                column++;
+                            } else {
+                                state = -1;
+                                qState = Token.States.q2;
+                            }
+                            break;
+                        case 5:
+                            if (character.CompareTo('"') == 0) {
+                                //termina la cadena
+                                state = -1;
+                                lexeme += character;
+                                character = entry[++count];
+                                column++;
+                                qState = Token.States.q7;
+                            } else if(character.CompareTo('\n') != 0 && character.CompareTo('$') != 0) {
+                                //si no es una comilla ni un salto de linea
+                                //es un caracter de entrada
+                                //se mantiene en el mismo estado
+                                lexeme += character;
+                                character = entry[++count];
+                                column++;
+                            } else {
+                                //es un salto de linea
+                                state = -1;
+                                qState = Token.States.qErr;
+                            }
+                            break;
+                        case 8:
+                            if(character.CompareTo('/') == 0) {
+                                //nos dirijimos al estado 9
+                                state = 9;
+                                lexeme += character;
+                                character = entry[++count];
+                                column++;
+                            } else if(character.CompareTo('*') == 0) {
+                                //nos dirijimos al estado 10
+                                state = 10;
+                                lexeme += character;
+                                character = entry[++count];
+                                column++;
+                            } else {
+                                //es un divisor
+                                state = -1;
+                                qState = Token.States.q8;
+                            }
+                            break;
+                        case 9:
+                            if(character.CompareTo('\n') == 0 || character.CompareTo('$') == 0) {
+                                //con un salto de lina termina el comentario
+                                state = -1;
+                                qState = Token.States.q11;
+                            } else {
+                                lexeme += character;
+                                character = entry[++count];
+                                column++;
+                            }
+                            break;
+                        case 10:
+                            if (character.CompareTo('*') == 0) {
+                                //con un salto de lina termina el comentario
+                                state = 13;
+                                lexeme += character;
+                                character = entry[++count];
+                                column++;
+                            } else if(character.CompareTo('$') == 0) {
+                                //no se termino el comentario
+                                //generar error
+                                state = -1;
+                                qState = Token.States.qErr;
+                            } else {
+                                //el estado se mantiene
+                                lexeme += character;
+                                character = entry[++count];
+                                column++;
+                            }
+                            break;
+                        case 13:
+                            if(character.CompareTo('/') == 0) {
+                                //fin de comentario
+                                state = -1;
+                                lexeme += character;
+                                character = entry[++count];
+                                column++;
+                                qState = Token.States.q11;
+                            } else if (character.CompareTo('*') == 0) {
+                                //estado se mantiene
+                                lexeme += character;
+                                character = entry[++count];
+                                column++;
+                            } else if(character.CompareTo('$') == 0) {
+                                //no se termino el comentario
+                                //generar error
+                                state = -1;
+                                qState = Token.States.qErr;
+                            } else {
+                                //regresamos al estado 10
+                                state = 10;
+                                lexeme += character;
+                                character = entry[++count];
+                                column++;
+                            }
+                            break;
+                        case 18:
+                            if (character.CompareTo('=') == 0) {
+                                //operador de asignacion
+                                state = -1;
+                                lexeme += character;
+                                character = entry[++count];
+                                column++;
+                                qState = Token.States.q19;
+                            } else {
+                                state = -1;
+                                qState = Token.States.qErr;
+                            }
+                            break;
+                        case 30:
+                            if (char.IsLetter(character) || character.CompareTo('_') == 0 || character.CompareTo('.') == 0 || char.IsDigit(character)) {
+                                //se mantiene en este estado
+                                lexeme += character;
+                                character = entry[++count];
+                                column++;
+                            } else {
+                                state = -1;
+                                qState = Token.States.qErr;
                             }
                             break;
                     }

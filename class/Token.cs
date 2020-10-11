@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Drawing;
 
 namespace M {
     public class Token {
@@ -10,9 +11,11 @@ namespace M {
         private String state;
         private int row, column, pos;
         private Token next;
+        private Color color;
 
         public Token(States state, String lexeme, int row, int column, int pos) {
             //metodo constructor
+            color = Color.White;
             this.state = getStates(state);
             this.lexeme = lexeme;
             this.row = row;
@@ -27,6 +30,7 @@ namespace M {
         public int Column { get { return column; } }
         public int Pos { get { return pos; } }
         public Token Next { get { return next; } set { next = value; } }
+        public Color Color { get { return color; } set { color = value; } }
 
 
         public enum States {
@@ -71,21 +75,23 @@ namespace M {
 
             switch (state) {
                 case States.q1:
+                    color = Color.LightSkyBlue;
                     t = "var";
                     break;
                 case States.q2:
-                    t = "float";
-                    break;
                 case States.q4:
+                    color = Color.FromArgb(43, 145, 175);
                     t = "float";
                     break;
                 case States.q7:
+                    color = Color.FromArgb(255, 181, 0);
                     t = "string";
                     break;
                 case States.q8:
                     t = "div";
                     break;
                 case States.q11:
+                    color = Color.FromArgb(2, 183, 43);
                     t = "comment";
                     break;
                 case States.q14:
@@ -128,6 +134,7 @@ namespace M {
                     t = "rightBracket";
                     break;
                 case States.qInt:
+                    color = Color.FromArgb(202, 121, 236);
                     t = "int";
                     break;
                 case States.qPow:
@@ -152,21 +159,26 @@ namespace M {
                     t = "tan";
                     break;
                 case States.qDel:
+                    color = Color.FromArgb(202, 121, 236);
                     t = "del";
                     break;
                 case States.qList:
+                    color = Color.FromArgb(202, 121, 236);
                     t = "list";
                     break;
                 case States.qPrint:
+                    color = Color.FromArgb(202, 121, 236);
                     t = "print";
                     break;
                 case States.qInput:
+                    color = Color.FromArgb(202, 121, 236);
                     t = "input";
                     break;
                 case States.qFin:
                     t = "fin";
                     break;
                 case States.qErr:
+                    color = Color.Red;
                     t = "error";
                     break;
             }
