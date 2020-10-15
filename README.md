@@ -8,7 +8,7 @@
 - El framework es **.NET Framework 4.8**
 - Cuenta con una interfaz **Windows Form**
 
-### El proyecto se dividira en 13 puntos
+### El proyecto se dividira en 14 puntos
 - [x] *1. Creacion del proyecto*
 - [x] *2. Crear y dar formato a la ventana*
      - [x] *1. Barra de menu*
