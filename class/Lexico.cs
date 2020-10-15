@@ -383,7 +383,7 @@ namespace M {
                 return Token.States.qList;
             } else if (cadena == "print") {
                 return Token.States.qPrint;
-            } else if (cadena == "intput") {
+            } else if (cadena == "input") {
                 return Token.States.qInput;
             }
             return Token.States.q1;

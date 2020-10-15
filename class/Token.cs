@@ -138,24 +138,31 @@ namespace M {
                     t = "int";
                     break;
                 case States.qPow:
+                    color = Color.FromArgb(202, 121, 236);
                     t = "powTwo";
                     break;
                 case States.qE:
+                    color = Color.FromArgb(202, 121, 236);
                     t = "e";
                     break;
                 case States.qPi:
+                    color = Color.FromArgb(202, 121, 236);
                     t = "pi";
                     break;
                 case States.qLog:
+                    color = Color.FromArgb(202, 121, 236);
                     t = "log";
                     break;
                 case States.qSin:
+                    color = Color.FromArgb(202, 121, 236);
                     t = "sin";
                     break;
                 case States.qCos:
+                    color = Color.FromArgb(202, 121, 236);
                     t = "cos";
                     break;
                 case States.qTan:
+                    color = Color.FromArgb(202, 121, 236);
                     t = "tan";
                     break;
                 case States.qDel:

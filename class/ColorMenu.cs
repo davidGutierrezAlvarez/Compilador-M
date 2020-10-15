@@ -8,9 +8,8 @@ using System.Windows.Forms;
 
 namespace M {
     public class ColorMenu : ProfessionalColorTable {
-        public ColorMenu()
-        {
-            // see notes
+        int hover = 0x7800FF00;//(27, 27, 28)
+        public ColorMenu() {
             base.UseSystemColors = false;
         }
         public override Color MenuBorder {
@@ -44,8 +43,7 @@ namespace M {
         }
 
 
-        public override Color ToolStripDropDownBackground
-        {
+        public override Color ToolStripDropDownBackground {
             get { return Color.FromArgb(27, 27, 28); }
         }
 
@@ -53,12 +51,38 @@ namespace M {
             get { return Color.FromArgb(25, 45, 255); }
         }
 
-        public override Color SeparatorLight 
-        {
+        public override Color SeparatorLight  {
             get { return Color.FromArgb(255, 45, 0); }
         }
 
 
+        public override Color ToolStripContentPanelGradientBegin
+        {
+            get { return Color.FromArgb(hover); }
+        }
+
+        public override Color ToolStripBorder
+        {
+            get { return Color.FromArgb(hover); }
+        }
+
+    }
+
+
+
+    public partial class CustomToolStrip : MenuStrip {
+
+        public CustomToolStrip() {
+            this.RenderMode = ToolStripRenderMode.ManagerRenderMode;
+            this.Renderer = new ToolStripProfessionalRenderer(new ColorMenu());
+            this.BackColor = Color.FromArgb(45, 45, 48);
+            this.ForeColor = Color.White;
+
+        }
+
+        public Color ToolStripForeColor {
+            get { return Color.Red; }
+        }
 
 
     }
