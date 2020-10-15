@@ -20,16 +20,16 @@
 - [x] *3. Tokens*
 - [x] ~*4. .json de palabras reservadas*~
 - [x] *4. funcion buscadora de palabras reservadas*
-- [ ] *4. Analizador Lexico*
-- [ ] *5. Remarcado de tokens*
-- [ ] *6. Tabla de simbolos*
-- [ ] *7. Analizador sintactico*
-- [ ] *8. Arbol sintactico*
-- [ ] *9. Analizador semantico*
-- [ ] *10. Arbol Abstracto*
-- [ ] *11. Codigo intermedio*
-- [ ] *12. Generador de codigo*
-- [ ] *13. Codigo objeto*
+- [x] *5. Analizador Lexico*
+- [x] *6. Remarcado de tokens*
+- [ ] *7. Tabla de simbolos*
+- [ ] *8. Analizador sintactico*
+- [ ] *9. Arbol sintactico*
+- [ ] *10. Analizador semantico*
+- [ ] *11. Arbol Abstracto*
+- [ ] *12. Codigo intermedio*
+- [ ] *13. Generador de codigo*
+- [ ] *14. Codigo objeto*
 
 
 
