@@ -36,8 +36,23 @@
 ### Automata
 ![Alt text](automata/lexico.png "Automata") 
 
-### Estados
-- *Estara listo en unos dias*
+### Gramatica
+```
+bloque      ::= <asignacion> ;
+bloque      ::= <funcion> ;
+asignacion  ::= var := <exp>
+exp         ::= <exp> <op> <exp> 
+exp         ::= ( <exp> ) 
+exp         ::= <funcion> 
+exp         ::= var
+exp         ::= numero 
+funcion     ::= reservada ( <exp> )
+op          ::= + 
+op          ::= - 
+op          ::= * 
+op          ::= / 
+op          ::= ^
+```
 
 ### Finalidad del proyecto
 - Este proyecto se elabora con fines de aprendizaje

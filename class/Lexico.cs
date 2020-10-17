@@ -339,7 +339,8 @@ namespace M {
                 }
 
                 //agregar token generado
-                addToken(qState, row, column-lexeme.Length, count-lexeme.Length);
+                if(lexeme != "")
+                    addToken(qState, row, column-lexeme.Length, count-lexeme.Length);
                 //actualizar cambio de linea
                 if (character.CompareTo('\n') == 0) {
                     column = 0;

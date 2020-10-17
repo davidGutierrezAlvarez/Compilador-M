@@ -1,0 +1,24 @@
+bloque      ::= <asignacion> ;
+bloque      ::= <funcion> ;
+asignacion  ::= var := <exp>
+exp         ::= <exp> <op> <exp> 
+exp         ::= ( <exp> ) 
+exp         ::= <funcion> 
+exp         ::= var
+exp         ::= numero 
+funcion     ::= reservada ( <exp> )
+op          ::= + 
+op          ::= - 
+op          ::= * 
+op          ::= / 
+op          ::= ^
+
+/*
+*
+*/
+
+bloque      ::= <asignacion> ; | <funcion> ;
+asignacion  ::= var := <exp>
+exp         ::= <exp> <op> <exp> | ( <exp> ) | <funcion> | var | numero 
+funcion     ::= reservada ( <exp> )
+op          ::= + | - | * | / | ^

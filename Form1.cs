@@ -23,6 +23,7 @@ namespace M {
 
 			bmpResize();
 			resize();
+			//richTextBox.Rtf = @"{\rtf1\ulwave underline\ulnone}";
 		}
 
 		private void richTextBox_TextChanged(object sender, EventArgs e)
@@ -60,14 +61,24 @@ namespace M {
 
 					if (token.State == "error") {
 						//si es un token de error lo subrayo
-						richTextBox.SelectionFont = fontUnderline;
+						//richTextBox.SelectionFont = fontUnderline;
 						//marco el final del token
-						richTextBox.Select(token.Pos + token.Lexeme.Length, 1);
+						//richTextBox.Select(token.Pos + token.Lexeme.Length, 1);
+						//MessageBox.Show(richTextBox.Rtf);
+
+						//richTextBox.Rtf = richTextBox.Rtf.Remove(token.Pos, token.Lexeme.Length);
+						//richTextBox.Rtf = richTextBox.Rtf.Insert(token.Pos, @"\ulwave" + token.Lexeme + @"\ulnone");
+						//RTFBuilder f = new RTFBuilder();
+						richTextBox.Rtf = richTextBox.Rtf.Replace(token.Lexeme, @"\ulwave" + token.Lexeme + @"\ulnone");
+						Console.WriteLine(richTextBox.Rtf);
+						//MessageBox.Show(richTextBox.Rtf);
 					}
 					//si el token es valido le quito el subrayado
 					richTextBox.SelectionFont = fontNormal;
+					//MessageBox.Show(token.Lexeme);
 				}
 
+				//MessageBox.Show("stop");
 				richTextBox.Select(pos, length);
 				//recuperar foco
 			}
